@@ -129,3 +129,196 @@ const setName = (name: string, ...arg: any): void => {
 setName("Max", 3, true);
 setName("John", 4);
 setName("Sully");
+
+
+
+
+
+// Map, filter and find //////////////////
+
+let users = [
+	{
+		id: 1,
+		name: "John",
+		age: 33,
+		account: "Premium",
+		months: 5
+	},
+	{
+		id: 3,
+		name: "Max",
+		age: 23,
+		account: "Premium",
+		months: 8
+	},
+	{
+		id: 16,
+		name: "Bill",
+		age: 45,
+		account: "Basic",
+		months: 3
+	}
+]
+
+let setAgeUser = users.map(item => {
+	return item.age;
+});
+console.log(setAgeUser);
+
+let premiumUser = users.filter(item => item.account === "Premium");
+console.log(premiumUser);
+
+let findUserLittleMonth = users.find(item => item.months <= 3);
+console.log(findUserLittleMonth);
+
+
+
+
+// Interface  ////////////////////////////
+
+interface Mobile {
+	modal: string;
+	price: number;
+	menufactured?: string;
+}
+
+const mobile1: Mobile = {
+	modal: "ultra q5",
+	price: 324,
+	menufactured: "Earth",
+}
+console.log(mobile1);
+
+const mobile2: Mobile = {
+	modal: "ultra z5",
+	price: 254,
+}
+console.log(mobile2);
+
+
+
+interface Phone {
+	modal: string;
+	price: number;
+	menufactured?: string;
+	readonly specs: string;
+	buy(): string;
+	[propName: string]: any
+}
+
+const phone1: Phone = {
+	modal: "Aven z8",
+	price: 420,
+	menufactured: "Earth",
+	specs: "4Gb",
+	lens: "50px camera",
+	buy() { return "Order list" }
+}
+console.log(phone1);
+console.log(phone1.buy());
+
+phone1.price = 410;  // Change value
+// phone1.specs = "6Gb"; // Error - Only read
+
+
+
+interface numFunction {
+	(arg: number): number
+}
+const multy2: numFunction = (arg) => {
+	return arg * 2;
+}
+console.log(multy2(10));
+
+
+
+interface I1 {
+	model: string;
+}
+
+interface I2 {
+	price: number;
+}
+
+interface SmartPhone extends I1, I2 {
+	buy(): string
+}
+
+const Smart1: SmartPhone = {
+	model: "Samsung",
+	price: 630,
+	buy() { return "Order now" },
+}
+
+console.log(Smart1);
+console.log(Smart1.buy());
+
+
+
+interface Mobilespec {
+	modal: string;
+	price: number;
+	batteryCapacity: string;
+}
+
+interface Mobilespec {
+	brightness: string;
+}
+
+const mobilespec1: Mobilespec = {
+	modal: "s15",
+	price: 1305,
+	batteryCapacity: "5180 mah",
+	brightness: "1000 nits"
+}
+
+console.log(mobilespec1);
+
+
+
+// Class interface
+
+interface MobileClass {
+	model: string;
+	ip: number;
+	buy(arg): void;
+}
+
+class MyClass implements MobileClass {
+	model: string;
+	ip: number;
+	constructor(arg1: string, arg2: number) {
+		this.model = arg1;
+		this.ip = arg2;
+	}
+	buy(arg: number): void {
+		console.log("Phone purchased", arg)
+	}
+}
+
+const mobile10 = new MyClass("Proteus p5", 16);
+mobile10.buy(621);
+
+class MobilespecClass {
+	model: string;
+	constructor(arg: string) {
+		this.model = arg
+	}
+}
+
+interface Mobile10 extends MobilespecClass {
+	buy(arg: number): void;
+}
+
+class Mobile50 implements Mobile10 {
+	model: string;
+	constructor(arg: string) {
+		this.model = arg;
+	}
+	buy(arg: number): void {
+		console.log("Product purchased", this.model, arg)
+	}
+}
+
+const mobile70 = new Mobile50("titania T2");
+mobile70.buy(1199);
