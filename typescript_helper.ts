@@ -322,3 +322,74 @@ class Mobile50 implements Mobile10 {
 
 const mobile70 = new Mobile50("titania T2");
 mobile70.buy(1199);
+
+
+
+
+
+// Type
+
+type Customer {
+	name: string;
+	age: number;
+	contact?: string;
+	readonly totalPrice: string;
+	[propName: string]: any;
+	checkout(): void;
+}
+
+const customer1: Customer = {
+	name: "Bill",
+	age: 28,
+	totalPrice: "$3",
+	review: "Good",
+	checkout() {
+		console.log("Purchased successfully");
+	},
+}
+console.log(customer1);
+customer1.age = 31;
+console.log(customer1);
+console.log(customer1.checkout());
+
+
+type tupKey = [arg1: number, arg2: string];
+
+const customerTup: tupKey = [10, "Ten"];
+console.log(customerTup);
+
+
+// Union intersection
+
+interface One {
+	value: number
+}
+
+interface Two {
+	count: number
+}
+
+type interfaceUnion = One & Two;
+
+const value1: interfaceUnion = {
+	value: 10,
+	count: 4
+}
+console.log(value1);
+
+type exclusionType = One | Two;
+
+const value2: exclusionType = { value: 20 }
+console.log(value2);
+
+const value3: exclusionType = { count: 5 }
+console.log(value3);
+
+// Primitive type
+type options = 'one' | 'two' | 'three';
+
+function print(arg1: string, arg2: options) {
+	console.log(arg1, arg2);
+}
+print("1", "one");
+
